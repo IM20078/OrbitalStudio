@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+/* --- Variables de Color --- */
+:root {
+  --color-background: #0d0d0d;
+  --color-background-secondary: #1a1a1a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cccccc;
+  --color-accent: #66ccff;
+  --shadow-dark: rgba(0, 0, 0, 0.4); /* Sombra más oscura para profundidad */
+  --shadow-light: rgba(102, 204, 255, 0.1); /* Sombra clara para brillo de acento */
+}
+
+/* --- Base Body Styles --- */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6; /* Mejora la legibilidad general */
+}
+
+/* --- Sección de Servicios --- */
+.Servicios {
+  padding: 90px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Titulo {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 60px; /* Keep this margin for spacing below the title */
+  color: var(--color-accent);
+  text-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--shadow-dark);
+  position: relative;
+  padding-bottom: 0.8em;
+  display: inline-block; /* This makes it behave like text within its parent */
+  /* Remove text-align: center; and margin: auto; from here */
+}
+
+.Titulo {
+  font-size: 3rem; /* Tamaño más grande para mayor impacto */
+  font-weight: 700;
+  margin-bottom: 60px; /* Margen para el espacio debajo del título */
+  color: var(--color-accent);
+  text-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--shadow-dark);
+  position: relative;
+  padding-bottom: 0.8em; /* Más espacio para la línea animada */
+
+  /* --- CAMBIOS CLAVE PARA CENTRAR --- */
+  display: block; /* Aseguramos que sea un elemento de bloque */
+  width: fit-content; /* Ocupa solo el ancho de su contenido */
+  margin-left: auto; /* Margen automático a la izquierda */
+  margin-right: auto; /* Margen automático a la derecha */
+  /* --- FIN CAMBIOS CLAVE --- */
+}
+
+.Titulo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0; /* Inicia con ancho 0 para la animación */
+  height: 4px;
+  background-color: var(--color-accent);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.Titulo:hover::after {
+  width: 300px; /* Ancho de expansión en hover (ajustar según el largo del título) */
+}
+.lista-servicios {
+  display: grid;
+  /* Columnas flexibles que se adaptan, con un mínimo de 350px por tarjeta */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px; /* Espacio entre las tarjetas de servicio */
+  padding: 0 20px;
+  justify-content: center; /* Centra las tarjetas si no llenan todo el ancho */
+}
+
+/* --- Estilo de cada Tarjeta de Servicio --- */
+.servicio {
+  background: var(--color-background-secondary);
+  border-radius: 12px;
+  padding: 40px; /* Mayor padding para una sensación más espaciosa */
+  /* Sombra inicial más profunda para mayor relieve */
+  box-shadow: 0 8px 30px var(--shadow-dark);
+  /* Transiciones más suaves y pronunciadas */
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea el contenido a la izquierda */
+  text-align: left; /* Asegura que el texto interno esté alineado a la izquierda */
+  overflow: hidden; /* Evita que el contenido se desborde de los bordes redondeados */
+}
+
+.servicio:hover {
+  transform: translateY(-15px); /* Levantamiento más notorio en hover */
+  /* Sombra de hover mejorada con un sutil glow de acento */
+  box-shadow: 0 15px 50px var(--shadow-dark), 0 0 25px var(--shadow-light);
+}
+
+.servicio-icono {
+  position: absolute;
+  top: 30px; /* Posición del ícono en la esquina superior derecha */
+  right: 30px;
+  color: var(--color-accent); /* Color del trazo del SVG */
+  background-color: rgba(102, 204, 255, 0.1);
+  border-radius: 50%;
+  padding: 22px; /* Espacio alrededor del ícono dentro del círculo */
+  display: flex; /* Para centrar el SVG dentro del padding */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out; /* Transición para el fondo del ícono */
+}
+
+.servicio:hover .servicio-icono {
+    background-color: rgba(102, 204, 255, 0.25); /* Fondo más brillante en hover */
+}
+
+/* Estilos específicos para los SVG dentro del contenedor de ícono */
+.servicio-icono svg {
+  width: 40px; /* Tamaño del ícono SVG */
+  height: 40px;
+  stroke: currentColor; /* Hereda el color del padre (.servicio-icono) */
+  stroke-width: 2; /* Grosor del trazo del ícono */
+  fill: none; /* Asegura que el ícono sea de contorno, no relleno */
+}
+
+.servicio-titulo {
+  font-size: 2rem; /* Título más grande y prominente */
+  font-weight: 600; /* Ligeramente más negrita */
+  margin-bottom: 10px; /* Espacio reducido antes de la descripción */
+  width: 70%;
+  color: var(--color-text-primary);
+  line-height: 1.3; /* Mejor legibilidad para títulos largos */
+}
+
+.servicio-descripcion {
+  font-size: 1.05rem; /* Tamaño de fuente ligeramente ajustado */
+  color: var(--color-text-secondary);
+  line-height: 1.8; /* Mayor altura de línea para mejor legibilidad */
+  margin-bottom: 25px; /* Más espacio antes de la lista de características */
+  flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible, ayudando a igualar alturas de tarjetas */
+}
+
+.servicio ul {
+  list-style: none; /* Oculta los marcadores por defecto */
+  padding-left: 0;
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+.servicio ul li {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7; /* Mayor espacio entre elementos de lista */
+  margin-bottom: 10px; /* Espacio entre cada punto de la lista */
+  padding-left: 30px; /* Espacio para el nuevo marcador (checkmark) */
+  position: relative; /* Para posicionar el checkmark */
+}
+
+/* Estilo del marcador de lista (checkmark) */
+.servicio ul li::before {
+  content: "✓"; /* Carácter de checkmark */
+  color: var(--color-accent);
+  position: absolute;
+  left: 0;
+  top: 0; /* Alinea con la parte superior del texto */
+  font-size: 1.3rem; /* Tamaño del checkmark */
+  font-weight: 700; /* Checkmark más audaz */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  .lista-servicios {
+    /* Ajusta el min-width de las columnas para pantallas medianas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .servicio {
+    padding: 30px; /* Reduce un poco el padding */
+  }
+
+  .servicio-titulo {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Servicios {
+    padding: 60px 15px; /* Padding reducido para pantallas más pequeñas */
+  }
+
+  .Titulo {
+    font-size: 2.5rem; /* Ajustado para móviles */
+    margin-bottom: 40px;
+    padding-bottom: 0.7em;
+  }
+
+  .Titulo:hover::after {
+    width: 200px; /* Ancho de hover ajustado para pantallas más pequeñas */
+  }
+
+  .lista-servicios {
+    display: flex; /* Vuelve a un layout de columna única */
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .servicio {
+    width: 90%; /* Ocupa más ancho en móvil */
+    padding: 35px;
+    align-items: flex-start; /* Mantiene la alineación a la izquierda */
+    text-align: left;
+    margin-bottom: 20px; /* Espacio entre tarjetas apiladas */
+  }
+
+  .servicio-icono {
+    position: static; /* Coloca el ícono en el flujo normal del documento */
+    margin-bottom: 20px; /* Espacio debajo del ícono */
+    transform: none; /* Elimina cualquier transformación */
+    align-self: flex-start; /* Alinea el ícono a la izquierda dentro de la columna flexible */
+  }
+
+  .servicio-titulo {
+    font-size: 1.6rem;
+    text-align: left; /* Asegura que el título esté alineado a la izquierda */
+  }
+
+  .servicio-descripcion {
+    font-size: 1rem;
+    text-align: left; /* Asegura que la descripción esté alineada a la izquierda */
+  }
+
+  .servicio ul {
+    padding-left: 0; /* Mantiene el padding en 0 para la lista */
+  }
+
+  .servicio ul li {
+    padding-left: 25px; /* Ajusta el padding para el checkmark */
+  }
+}
+
+@media (max-width: 480px) {
+  .Titulo {
+    font-size: 2rem;
+  }
+
+  .servicio {
+    padding: 25px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.4rem;
+  }
+
+  .servicio-icono svg {
+    width: 35px;
+    height: 35px;
+  }
+}
