@@ -112,7 +112,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Logo>
-        <img src="/public/Logo sin fondo.png" alt="Logo" />
+        <img src="./public/Logo sin fondo.png" alt="Logo" />
       </Logo>
 
       <MenuWrapper>
