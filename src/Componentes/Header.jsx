@@ -46,6 +46,9 @@ const Burger = styled.div`
 
   @media (max-width: 768px) {
     display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   span {
