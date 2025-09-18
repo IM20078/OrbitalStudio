@@ -32,7 +32,7 @@ export default function SobreNosotros() {
         <div style={{ ...styles.face, ...styles.back }}>
           {/* Título con degradado en la parte trasera */}
           <h2 style={{ ...styles.title, ...styles.gradientText }}>
-            Somos un equipo apasionado 🚀
+            Somos un equipo apasionado 
           </h2>
           <p style={{ ...styles.text, color: "#06070fff" }}>
             Combinamos diseño, innovación y tecnología para dar vida a proyectos
