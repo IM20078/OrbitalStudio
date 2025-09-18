@@ -113,7 +113,6 @@ const Header = () => {
     <HeaderContainer>
       <Logo>
         <img src="/Logo sin fondo.png" alt="Logo" />
-
       </Logo>
 
       <MenuWrapper>
