@@ -23,9 +23,15 @@ const Logo = styled.div`
 
   img {
     height: 50px;
+    max-width: 100%;
+    object-fit: contain;
 
     @media (max-width: 768px) {
-      height: 32px;
+      height: 36px;
+    }
+
+    @media (max-width: 480px) {
+      height: 28px;
     }
   }
 `;
@@ -33,11 +39,37 @@ const Logo = styled.div`
 const Burger = styled.div`
   display: none;
   cursor: pointer;
-  font-size: 28px;
   z-index: 1100;
+  width: 30px;
+  height: 22px;
+  position: relative;
 
   @media (max-width: 768px) {
     display: block;
+  }
+
+  span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  span:nth-child(1) {
+    top: ${({ open }) => (open ? "10px" : "0")};
+    transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+  }
+
+  span:nth-child(2) {
+    top: 10px;
+    opacity: ${({ open }) => (open ? "0" : "1")};
+  }
+
+  span:nth-child(3) {
+    top: ${({ open }) => (open ? "10px" : "20px")};
+    transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
   }
 `;
 
@@ -60,24 +92,27 @@ const Menu = styled.nav`
 
     @media (max-width: 768px) {
       flex-direction: column;
-      position: absolute;
-      top: 60px;
+      position: fixed;
+      top: 0;
       left: 0;
+      height: 100vh;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      display: ${({ open }) => (open ? "flex" : "none")};
-      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(12px);
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      transition: transform 0.3s ease;
+      transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
       z-index: 1000;
     }
   }
 
   li {
-    margin: 0 10px;
+    margin: 0 15px;
 
     @media (max-width: 768px) {
-      margin: 15px 0;
-      text-align: center;
+      margin: 10px 0;
     }
   }
 
@@ -87,13 +122,14 @@ const Menu = styled.nav`
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 16px;
+    cursor: pointer;
 
     &:hover {
       color: #00ffff;
     }
 
     @media (max-width: 768px) {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 `;
@@ -105,7 +141,7 @@ const Header = () => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setMenuOpen(false); // cerrar el menú en mobile
+      setMenuOpen(false);
     }
   };
 
@@ -136,7 +172,11 @@ const Header = () => {
         </Menu>
       </MenuWrapper>
 
-      <Burger onClick={() => setMenuOpen(!menuOpen)}>☰</Burger>
+      <Burger open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+        <span />
+        <span />
+        <span />
+      </Burger>
     </HeaderContainer>
   );
 };
